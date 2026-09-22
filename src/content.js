@@ -10,9 +10,13 @@ export const carousels = [
   {
     "id": "teeth-not-tools",
     "category": "Dental",
-    "title": "Teeth Are Not Tools",
     "client": "Smilecraft Dental Clinic",
-    "description": "Five original Smilecraft educational slides about everyday habits that can damage teeth. Supplied by the studio, preserved in full and optimized for the web.",
+    "title": "Teeth Are Not Tools",
+    "description": "An original five-slide Smilecraft educational carousel explaining why using teeth to open packets and bottles can damage enamel.",
+    "slug": "smilecraft-tools",
+    "count": 5,
+    "style": "Dental education · Client artwork",
+    "origin": "client",
     "cover": "portfolio/smilecraft-tools-01",
     "slides": [
       "portfolio/smilecraft-tools-01",
@@ -20,16 +24,18 @@ export const carousels = [
       "portfolio/smilecraft-tools-03",
       "portfolio/smilecraft-tools-04",
       "portfolio/smilecraft-tools-05"
-    ],
-    "style": "Dental education · Client artwork",
-    "origin": "client"
+    ]
   },
   {
     "id": "braces-vs-aligners",
     "category": "Dental",
-    "title": "Braces vs Clear Aligners",
     "client": "Smilecraft Dental Clinic",
-    "description": "An original five-slide comparison carousel created for Smilecraft, with educational visuals about orthodontic treatment options.",
+    "title": "Braces vs Clear Aligners",
+    "description": "An original five-slide Smilecraft visual guide to two orthodontic treatments, with Malayalam and English captions.",
+    "slug": "smilecraft-braces",
+    "count": 5,
+    "style": "Dental education · Client artwork",
+    "origin": "client",
     "cover": "portfolio/smilecraft-braces-01",
     "slides": [
       "portfolio/smilecraft-braces-01",
@@ -37,16 +43,18 @@ export const carousels = [
       "portfolio/smilecraft-braces-03",
       "portfolio/smilecraft-braces-04",
       "portfolio/smilecraft-braces-05"
-    ],
-    "style": "Dental education · Client artwork",
-    "origin": "client"
+    ]
   },
   {
     "id": "teeth-whitening",
     "category": "Dental",
-    "title": "Is Teeth Whitening Right for You?",
     "client": "Smilecraft Dental Clinic",
-    "description": "An original five-slide educational series exploring common questions around teeth whitening and professional dental care.",
+    "title": "Is Teeth Whitening Right for You?",
+    "description": "An original five-slide Smilecraft guide to whitening consultations, expectations and treatment considerations.",
+    "slug": "smilecraft-whitening",
+    "count": 5,
+    "style": "Dental education · Client artwork",
+    "origin": "client",
     "cover": "portfolio/smilecraft-whitening-01",
     "slides": [
       "portfolio/smilecraft-whitening-01",
@@ -54,43 +62,59 @@ export const carousels = [
       "portfolio/smilecraft-whitening-03",
       "portfolio/smilecraft-whitening-04",
       "portfolio/smilecraft-whitening-05"
-    ],
-    "style": "Dental education · Client artwork",
-    "origin": "client"
+    ]
   },
   {
     "id": "milano-journeys",
     "category": "Travel",
-    "title": "The World Is Closer Than You Think",
     "client": "Milano Trips",
-    "description": "A new five-slide editorial travel carousel concept using aspirational destination imagery, warm tones and clear calls to discover.",
+    "title": "Dream Trips Made Easy",
+    "description": "Four travel posters with destination storytelling, stress-free itinerary planning, family holidays and early-booking inspiration.",
+    "slug": "milano-story",
+    "count": 4,
+    "style": "Travel · New creative concept",
+    "origin": "concept",
     "cover": "portfolio/milano-story-01",
     "slides": [
       "portfolio/milano-story-01",
       "portfolio/milano-story-02",
       "portfolio/milano-story-03",
-      "portfolio/milano-story-04",
-      "portfolio/milano-story-05"
-    ],
-    "style": "Travel · Portfolio concept",
-    "origin": "concept"
+      "portfolio/milano-story-04"
+    ]
   },
   {
     "id": "orbi-spaces",
     "category": "Architecture",
-    "title": "Spaces That Feel Like Your Story",
     "client": "Orbi Structures",
-    "description": "A new five-slide architecture carousel concept highlighting thoughtful design, comfortable living and the details behind great spaces.",
+    "title": "Spaces Built Around You",
+    "description": "Three original architecture posters exploring home design, project planning and naturally comfortable interiors.",
+    "slug": "orbi-story",
+    "count": 3,
+    "style": "Architecture · New creative concept",
+    "origin": "concept",
     "cover": "portfolio/orbi-story-01",
     "slides": [
       "portfolio/orbi-story-01",
       "portfolio/orbi-story-02",
-      "portfolio/orbi-story-03",
-      "portfolio/orbi-story-04",
-      "portfolio/orbi-story-05"
-    ],
-    "style": "Architecture · Portfolio concept",
-    "origin": "concept"
+      "portfolio/orbi-story-03"
+    ]
+  },
+  {
+    "id": "chayam-stories",
+    "category": "Tattoo",
+    "client": "Chayam Tattoos",
+    "title": "Ink With Meaning",
+    "description": "Three original Chayam Tattoos poster concepts about personal tattoo design, custom illustration and thoughtful aftercare.",
+    "slug": "chayam-story",
+    "count": 3,
+    "style": "Tattoo · New creative concept",
+    "origin": "concept",
+    "cover": "portfolio/chayam-story-01",
+    "slides": [
+      "portfolio/chayam-story-01",
+      "portfolio/chayam-story-02",
+      "portfolio/chayam-story-03"
+    ]
   }
 ];
 export const reels = [
