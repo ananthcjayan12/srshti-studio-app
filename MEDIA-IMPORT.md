@@ -1,29 +1,37 @@
-# Portfolio image import (WebP)
+# Final WebP portfolio assets
 
-This branch replaces generic carousel data and UI with a five-slide portfolio model. The optimized artwork goes in `public/images/portfolio/`.
+The approved studio media archive is **Srshti_Final_Portfolio_Media_Pack.zip** (25 optimized WebP images). It includes:
 
-## Original Smilecraft artwork
+| Brand | Local file prefix | Slides | Portfolio role |
+|---|---|---:|---|
+| Smilecraft Dental Clinic | `smilecraft-tools-`, `smilecraft-whitening-`, `smilecraft-braces-` | 5 each (15) | Client-provided artwork |
+| Milano Trips | `milano-story-` | 4 | New creative concept |
+| Orbi Structures | `orbi-story-` | 3 | New creative concept |
+| Chayam Tattoos | `chayam-story-` | 3 | New creative concept |
 
-Use the three source ZIP archives supplied by the studio (they contain five original PNG slides each). Put them in `portfolio-sources/` using the exact ZIP names below, then run:
+All filenames start at `01.webp` and live under `public/images/portfolio/`.
+
+## One-time import into PR #1
+
+The downloadable archive is an attachment to the ChatGPT conversation, not yet stored in GitHub. Download it, then run from your local checkout:
 
 ```bash
-python3 -m pip install Pillow
-python3 scripts/create_portfolio_art.py
+git fetch origin
+git switch feature/real-carousel-portfolio-webp
+git pull --ff-only origin feature/real-carousel-portfolio-webp
+python3 scripts/import_portfolio_pack.py ~/Downloads/Srshti_Final_Portfolio_Media_Pack.zip
+git add public/images/portfolio
+git commit -m "assets: add final 25 WebP portfolio slides"
+git push origin feature/real-carousel-portfolio-webp
 ```
 
-- `smilecraft_Cost-of-Ignoring-issue-Using-teeth-as-tools-n.zip`
-- `smilecraft_is-doing-teeth-whitening-a-good-thing.zip`
-- `smilecraft_Is-there-any-difference-between-Braces-and-Al.zip`
+If the ZIP is elsewhere, replace its path in the import command. The importer validates all 25 files before writing them and removes three retired, synthetic concept slides. It retains the original image dimensions, Malayalam text, art direction and brand artwork. Do **not** use the old concept generator.
 
-Original PNGs and project JSON remain private to the local workspace; do not commit the ZIP archives. Exported images go to `public/images/portfolio/smilecraft-{tools,whitening,braces}-01..05.webp`. Obtain client approval and patient consent before publishing identifiable photos.
+## Website behavior
 
-## Milano Trips and Orbi Structures
+- The home hero, category-filtered portfolio gallery, detail slide viewer and related work use the manifest in `src/content.js`; slide counts are 5, 5, 5, 4, 3 and 3.
+- Native lazy image loading and asynchronous decode reduce network competition; all final carousel sources are local WebP.
+- Until the above media import is pushed, missing images fall back to the older local demo illustrations. These are **not** the final carousel images.
+- CI will reject a PR that does not contain the complete final media pack.
 
-The same script creates two **original five-slide portfolio concepts** from local photo artwork already in this repository:
-`milano-story-01..05.webp` and `orbi-story-01..05.webp`. These concepts are not approved or published campaigns and do not claim real campaign performance.
-
-## Fast image delivery and deployment
-
-All carousel images are static WebP at 864 × 1080 (4:5) with no external image URLs. The React gallery uses native lazy loading, async decoding, and touch gestures; the detail viewer shows all five slides. Commit the generated files before publishing. If a file is absent, the app intentionally falls back to an existing local WebP so unfinished PRs do not display broken images.
-
-The earlier reel thumbnails remain **demo covers**; upload approved video files separately before describing them as finished client work.
+Before publishing, verify rights, permission and patient consent for identifiable Smilecraft artwork, and replace illustrative pricing, contact details and reel thumbnails with approved production details.
