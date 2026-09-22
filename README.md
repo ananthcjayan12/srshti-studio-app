@@ -55,3 +55,8 @@ No API keys or external UI kits required. No images are fetched from third-party
 ## Design references / regenerating demo artwork
 
 The `design-references/` folder includes all 8 approved UI mockups plus the two AI-generated reference inputs used to create the sample thumbnails and the supplied logo image. If you have Pillow and NumPy installed, regenerate the local samples with `python scripts/generate_demo_art.py` and the cropped logo with `python scripts/extract_logo.py`. Neither script is needed to run the React website.
+
+
+## New portfolio (WebP)
+
+The carousel gallery now features three five-slide Smilecraft series supplied by the studio, plus original five-slide Milano Trips and Orbi Structures **design concepts**. A separate optimized media pack contains all 25 slide files; the 10 Milano/Orbi concept assets are already in this branch. See [MEDIA-IMPORT.md](MEDIA-IMPORT.md) for the local import of the 15 client-supplied Smilecraft slides. Until those are added, the image component displays legacy local WebP fallback previews instead of broken images. Sample reel covers and prices are still demonstrations, not validated finished client work or confirmed rates.
