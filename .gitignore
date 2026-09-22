@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+
+# Vite / build output
+dist/
+build/
+.vite/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs and debug output
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Coverage and caches
+coverage/
+.cache/
+.parcel-cache/
+.eslintcache
+
+# Python helper-script artifacts
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Local editor settings
+.vscode/
+.idea/
+
+# Local agent/worktree metadata
+.kilo/
