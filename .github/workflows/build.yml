@@ -1,0 +1,24 @@
+name: Portfolio build
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Check concept artwork
+        run: |
+          for brand in milano-story orbi-story; do
+            for number in 01 02 03 04 05; do
+              test -s "public/images/portfolio/${brand}-${number}.webp"
+            done
+          done
