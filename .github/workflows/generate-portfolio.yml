@@ -30,5 +30,6 @@ jobs:
           git add public/images/portfolio/milano-story-*.webp public/images/portfolio/orbi-story-*.webp
           if ! git diff --cached --quiet; then
             git commit -m "assets: add ten optimized Milano/Orbi carousel slides"
-            git push
+            git pull --rebase origin feature/real-carousel-portfolio-webp
+            git push origin HEAD:feature/real-carousel-portfolio-webp
           fi
