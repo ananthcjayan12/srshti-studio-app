@@ -1,20 +1,97 @@
-/** SAMPLE CONTENT ONLY. Replace prices, project details, stats, images and contacts before publishing. */
+/** Portfolio sources: Smilecraft artwork supplied by studio; Milano/Orbi concepts are demo creative directions. */
 export const studio = {
   name: 'Srshti Creative Studio',
-  email: 'hello@example.com', // REPLACE with your real email before publishing
+  email: 'hello@example.com', // Replace before publishing.
   serviceLocation: 'Available for projects worldwide',
-  metrics: [
-    ['50+', 'Happy clients'], ['1M+', 'Content views'], ['3×', 'Average growth'], ['100%', 'Client satisfaction'],
-  ],
   clients: ['Smilecraft', 'Chayam', 'MILANO', 'Orbi'],
 };
+const slides = (slug) => Array.from({length:5}, (_,i)=>`portfolio/${slug}-${String(i+1).padStart(2,'0')}`);
 export const carousels = [
-  {id: 'dental', category:'Dental', title:'Healthy Smile Education Series', client:'Smilecraft Dental Clinic', description:'A five-part educational carousel with practical oral-care tips, illustrated as a sample campaign.', cover:'dental_01', slides:['dental_01','dental_02','dental_03','dental_04','dental_05'], style:'Education • Carousels'},
-  {id: 'travel', category:'Travel', title:'Explore More, Worry Less', client:'Milano Trips', description:'A bright destination-first concept created for travel storytelling.', cover:'travel_01', slides:['travel_01','travel_02'], style:'Travel • Inspiration'},
-  {id: 'tattoo', category:'Lifestyle', title:'More Than Ink', client:'Chayam Tattoos', description:'A graphic-led concept about personal expression and tattoo artistry.', cover:'tattoo_01', slides:['tattoo_01'], style:'Lifestyle • Art'},
-  {id: 'food', category:'Lifestyle', title:'Good Food, Better Days', client:'Sample food brand', description:'Warm and welcoming visuals for an illustrated food brand concept.', cover:'food_01', slides:['food_01'], style:'Lifestyle • Food'},
-  {id: 'architecture', category:'Architecture', title:'Spaces That Inspire', client:'Orbi Structures', description:'An architecture carousel concept with minimal, premium storytelling.', cover:'architecture_01', slides:['architecture_01'], style:'Architecture • Design'},
-  {id: 'branding', category:'Branding', title:'Small Steps, Big Results', client:'Sample lifestyle brand', description:'Simple, bold brand messaging designed to be memorable.', cover:'social_01', slides:['social_01'], style:'Brand identity • Storytelling'},
+  {
+    "id": "teeth-not-tools",
+    "category": "Dental",
+    "title": "Teeth Are Not Tools",
+    "client": "Smilecraft Dental Clinic",
+    "description": "Five original Smilecraft educational slides about everyday habits that can damage teeth. Supplied by the studio, preserved in full and optimized for the web.",
+    "cover": "portfolio/smilecraft-tools-01",
+    "slides": [
+      "portfolio/smilecraft-tools-01",
+      "portfolio/smilecraft-tools-02",
+      "portfolio/smilecraft-tools-03",
+      "portfolio/smilecraft-tools-04",
+      "portfolio/smilecraft-tools-05"
+    ],
+    "style": "Dental education · Client artwork",
+    "origin": "client"
+  },
+  {
+    "id": "braces-vs-aligners",
+    "category": "Dental",
+    "title": "Braces vs Clear Aligners",
+    "client": "Smilecraft Dental Clinic",
+    "description": "An original five-slide comparison carousel created for Smilecraft, with educational visuals about orthodontic treatment options.",
+    "cover": "portfolio/smilecraft-braces-01",
+    "slides": [
+      "portfolio/smilecraft-braces-01",
+      "portfolio/smilecraft-braces-02",
+      "portfolio/smilecraft-braces-03",
+      "portfolio/smilecraft-braces-04",
+      "portfolio/smilecraft-braces-05"
+    ],
+    "style": "Dental education · Client artwork",
+    "origin": "client"
+  },
+  {
+    "id": "teeth-whitening",
+    "category": "Dental",
+    "title": "Is Teeth Whitening Right for You?",
+    "client": "Smilecraft Dental Clinic",
+    "description": "An original five-slide educational series exploring common questions around teeth whitening and professional dental care.",
+    "cover": "portfolio/smilecraft-whitening-01",
+    "slides": [
+      "portfolio/smilecraft-whitening-01",
+      "portfolio/smilecraft-whitening-02",
+      "portfolio/smilecraft-whitening-03",
+      "portfolio/smilecraft-whitening-04",
+      "portfolio/smilecraft-whitening-05"
+    ],
+    "style": "Dental education · Client artwork",
+    "origin": "client"
+  },
+  {
+    "id": "milano-journeys",
+    "category": "Travel",
+    "title": "The World Is Closer Than You Think",
+    "client": "Milano Trips",
+    "description": "A new five-slide editorial travel carousel concept using aspirational destination imagery, warm tones and clear calls to discover.",
+    "cover": "portfolio/milano-story-01",
+    "slides": [
+      "portfolio/milano-story-01",
+      "portfolio/milano-story-02",
+      "portfolio/milano-story-03",
+      "portfolio/milano-story-04",
+      "portfolio/milano-story-05"
+    ],
+    "style": "Travel · Portfolio concept",
+    "origin": "concept"
+  },
+  {
+    "id": "orbi-spaces",
+    "category": "Architecture",
+    "title": "Spaces That Feel Like Your Story",
+    "client": "Orbi Structures",
+    "description": "A new five-slide architecture carousel concept highlighting thoughtful design, comfortable living and the details behind great spaces.",
+    "cover": "portfolio/orbi-story-01",
+    "slides": [
+      "portfolio/orbi-story-01",
+      "portfolio/orbi-story-02",
+      "portfolio/orbi-story-03",
+      "portfolio/orbi-story-04",
+      "portfolio/orbi-story-05"
+    ],
+    "style": "Architecture · Portfolio concept",
+    "origin": "concept"
+  }
 ];
 export const reels = [
   {id:'testimonial',category:'Testimonial',title:'A Healthier, Brighter You', client:'Smilecraft Dental Clinic',cover:'reel_testimonial',description:'A personable patient-story concept with a gentle opening hook and reassuring visual storytelling.',detail:['Hook that quickly introduces the story','Warm, authentic visual treatment','Clear and calm on-screen captions','Simple closing call to action']},
