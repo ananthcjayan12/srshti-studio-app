@@ -126,9 +126,49 @@ export const reels = [
   {id:'food',category:'Promotional',title:'Good Food, Good Mood',client:'Sample food brand',cover:'reel_food',description:'A playful food promotional reel concept with simple, appetizing visuals.',detail:['Food-first visual hook','Fast, clear story beats','Tasteful motion typography','Visit or order call to action']},
 ];
 export const pricing = [
-  {name:'Starter',price:'$499',subtitle:'For small brands getting started',features:['8 social media posts','2 reels','Custom graphics','Captions & hashtag research']},
-  {name:'Growth',price:'$799',subtitle:'For brands ready to scale',popular:true,features:['12 social media posts','4 reels','2 carousels','Content strategy','Monthly performance report']},
-  {name:'Premium',price:'$1,299',subtitle:'For established brands that want more',features:['20 social media posts','6 reels','4 carousels','Monthly strategy call','Detailed performance report']},
-  {name:'Custom',price:'Let’s talk',subtitle:'Tailored around your goals',features:['Custom content volume','Photo and video shoots','Paid advertising support','Branding & creative direction','Dedicated team']},
+  {
+    name:'Basic Plan',
+    price:'₹2,999',
+    subtitle:'A consistent social presence for growing brands',
+    features:[
+      '30 branded creative posts or carousels per month',
+      'Daily posting schedule',
+      'Facebook account handling',
+      'Instagram account handling',
+    ],
+  },
+  {
+    name:'Basic Plus',
+    price:'₹7,999',
+    subtitle:'Add weekly video and daily audience engagement',
+    popular:true,
+    features:[
+      'Everything included in the Basic plan',
+      '4 creative videos per month — one each week',
+      'Daily stories designed for engagement',
+    ],
+  },
+  {
+    name:'Pro Plan',
+    price:'₹14,999',
+    subtitle:'Content, website support and local visibility',
+    features:[
+      'Everything included in the Basic Plus plan',
+      '10 creative videos per month',
+      'Website creation and maintenance',
+      'Basic Google Business Profile handling and optimization',
+    ],
+  },
+  {
+    name:'Ultimate Pack',
+    price:'₹29,999',
+    subtitle:'A complete digital growth and automation package',
+    features:[
+      'Everything included in the Pro plan',
+      'Tailored strategy for your business',
+      'Meta ads account management and optimization',
+      'WhatsApp automation setup',
+      '15 creative videos per month',
+    ],
+  },
 ];
-export const addOns = [['Ad support','$199 / mo'],['Shoot day','$499 / shoot'],['Branding kit','$299 once'],['Reporting','$99 / mo']];
