@@ -6,3 +6,12 @@
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
 .logo-image{width:145px;height:auto;display:block;object-fit:contain}.site-footer .logo-image{width:125px}@media(max-width:760px){.logo-image{width:112px}.site-footer .logo-image{width:112px}}
+
+/* Five-slide portfolio: native 4:5 artwork and accessible touch targets. */
+.project-kind{display:block;font-size:.69rem;font-weight:650;letter-spacing:.015em;color:#87663a;margin-top:7px}
+.project-image img,.gallery-art img,.hero-deck-card img{object-fit:cover;object-position:center}
+.viewer-image{aspect-ratio:4/5;max-width:540px;touch-action:pan-y}
+.viewer-image>img{width:100%;height:100%;object-fit:contain;background:#efe9e0}
+.slide-thumbs button{aspect-ratio:4/5;min-width:0}
+.slide-thumbs img{width:100%;height:100%;object-fit:cover}
+@media(max-width:760px){.project-kind{font-size:.58rem}.viewer-image{max-width:min(100%,460px)}}

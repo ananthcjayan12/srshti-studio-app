@@ -42,3 +42,6 @@ Thumbs.db
 
 # Local agent/worktree metadata
 .kilo/
+
+# Studio-supplied source archives; publish optimized WebP outputs only
+portfolio-sources/

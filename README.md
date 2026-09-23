@@ -33,7 +33,7 @@ Static hosting works with the output `dist/`. Hash-based URLs such as `/#/carous
 
 ## Important — demo content, not published business facts
 
-All 25 local WebP images in `public/images/` are *illustrative sample artwork* assembled from the AI-generated mockups approved in this conversation. They are not real client projects and not real patient photos. The example view counts, outcomes, brand-name associations, testimonials and pricing shown in the mockups are **not verified**. This website deliberately labels demonstration metrics and prices; remove or replace them before publishing. The illustrations are editable sample placeholders, not finished client assets.
+The root `public/images/*.webp` assets are legacy illustrative artwork from the initial demo. The new `public/images/portfolio/*.webp` portfolio uses 15 original studio-supplied Smilecraft slides and 10 new creative concepts for Milano Trips, Orbi Structures and Chayam Tattoos. These concepts must not be described as published campaigns. Prices, sample reels, testimonials and outcome metrics in the demo are illustrative, not independently verified.
 
 Edit `src/content.js` to replace client/project references, prices, metrics and contact email. The contact email is currently `hello@example.com`, not a real studio inbox. The form creates a `mailto:` draft **only**; there is no backend and it does not directly send emails. Replace this with your preferred form service or backend before launch.
 
@@ -55,3 +55,12 @@ No API keys or external UI kits required. No images are fetched from third-party
 ## Design references / regenerating demo artwork
 
 The `design-references/` folder includes all 8 approved UI mockups plus the two AI-generated reference inputs used to create the sample thumbnails and the supplied logo image. If you have Pillow and NumPy installed, regenerate the local samples with `python scripts/generate_demo_art.py` and the cropped logo with `python scripts/extract_logo.py`. Neither script is needed to run the React website.
+
+
+## Final portfolio media (25 WebP slides)
+
+The website is configured for 6 carousels across 4 brands: Smilecraft Dental Clinic (3 × 5 slides), Milano Trips (4 slides), Orbi Structures (3 slides) and Chayam Tattoos (3 slides). The new designs preserve the typography, layouts and brand colours approved during the portfolio review. The Milano, Orbi and Chayam images are labelled as creative concepts.
+
+**Required before merging PR #1:** Add all 25 image files from `Srshti_Final_Portfolio_Media_Pack.zip`. See [MEDIA-IMPORT.md](MEDIA-IMPORT.md) for the exact one-command importer. Missing files currently fall back to legacy sample artwork; the CI media check will fail until the approved files are committed.
+
+The CSS/UI renders at 4:5, supports phone swipe navigation and uses browser-native lazy loading. Prices and reel cover thumbnails still require real production information before launch.
