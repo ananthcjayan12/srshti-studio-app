@@ -13,7 +13,7 @@ All filenames start at `01.webp` and live under `public/images/portfolio/`.
 
 ## One-time import into PR #1
 
-The downloadable archive is an attachment to the ChatGPT conversation, not yet stored in GitHub. Download it, then run from your local checkout:
+The downloadable archive is an attachment to the ChatGPT conversation, not yet stored in GitHub. Download it, then run from your local checksout:
 
 ```bash
 git fetch origin
