@@ -34,4 +34,4 @@ If the ZIP is elsewhere, replace its path in the import command. The importer va
 - Until the above media import is pushed, missing images fall back to the older local demo illustrations. These are **not** the final carousel images.
 - CI will reject a PR that does not contain the complete final media pack.
 
-Before publishing, verify rights, permission and patient consent for identifiable Smilecraft artwork, and replace illustrative pricing, contact details and reel thumbnails with approved production details.
+Before publishing, verify rights, permission and patient consent for identifiable Smilecraft artwork, and confirm the supplied package details, contact information and reel thumbnails as approved production content.

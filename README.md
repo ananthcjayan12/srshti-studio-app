@@ -28,14 +28,14 @@ Static hosting works with the output `dist/`. Hash-based URLs such as `/#/carous
 4. Carousel detail: slide-by-slide viewer, thumbnails, creative brief.
 5. Reels: filterable sample reel portfolio.
 6. Reel detail: cover artwork and creative breakdown (video placeholder).
-7. Pricing: illustrative plan cards and optional add-ons.
+7. Pricing: four monthly packages from Basic Plan to Ultimate Pack.
 8. Contact: validated enquiry form that opens the visitor's email app.
 
 ## Important — demo content, not published business facts
 
-The root `public/images/*.webp` assets are legacy illustrative artwork from the initial demo. The new `public/images/portfolio/*.webp` portfolio uses 15 original studio-supplied Smilecraft slides and 10 new creative concepts for Milano Trips, Orbi Structures and Chayam Tattoos. These concepts must not be described as published campaigns. Prices, sample reels, testimonials and outcome metrics in the demo are illustrative, not independently verified.
+The root `public/images/*.webp` assets are legacy illustrative artwork from the initial demo. The new `public/images/portfolio/*.webp` portfolio uses 15 original studio-supplied Smilecraft slides and 10 new creative concepts for Milano Trips, Orbi Structures and Chayam Tattoos. These concepts must not be described as published campaigns. Sample reels, testimonials and outcome metrics in the demo are illustrative, not independently verified. The monthly package names, prices and deliverables reflect the supplied studio package sheet.
 
-Edit `src/content.js` to replace client/project references, prices, metrics and contact email. The contact email is currently `hello@example.com`, not a real studio inbox. The form creates a `mailto:` draft **only**; there is no backend and it does not directly send emails. Replace this with your preferred form service or backend before launch.
+Edit `src/content.js` to update client/project references, package details and contact information. The contact email is currently `hello@example.com`, not a real studio inbox. The form creates a `mailto:` draft **only**; there is no backend and it does not directly send emails. Replace this with your preferred form service or backend before launch.
 
 To show actual reel videos, add `.mp4` assets to `public/videos/`, update `src/content.js` to add their URLs, and swap the current reel-detail cover with a native `<video controls playsInline>` element. The sample package intentionally does not pretend still images are working video files.
 
@@ -63,4 +63,4 @@ The website is configured for 6 carousels across 4 brands: Smilecraft Dental Cli
 
 **Required before merging PR #1:** Add all 25 image files from `Srshti_Final_Portfolio_Media_Pack.zip`. See [MEDIA-IMPORT.md](MEDIA-IMPORT.md) for the exact one-command importer. Missing files currently fall back to legacy sample artwork; the CI media check will fail until the approved files are committed.
 
-The CSS/UI renders at 4:5, supports phone swipe navigation and uses browser-native lazy loading. Prices and reel cover thumbnails still require real production information before launch.
+The CSS/UI renders at 4:5, supports phone swipe navigation and uses browser-native lazy loading. Contact information and reel cover thumbnails still require real production information before launch.
