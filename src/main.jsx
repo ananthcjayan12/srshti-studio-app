@@ -18,13 +18,214 @@ function Button({children,onClick,secondary=false,className='',icon=true,type='b
 const heroStats=[{icon:BookOpen,number:'6',label:'Featured carousels'},{icon:Play,number:'25',label:'Portfolio slides'},{icon:ChartNoAxesColumnIncreasing,number:'4',label:'Creative industries'},{icon:Heart,number:'WebP',label:'Optimized artwork'}];
 function BrandStrip(){return <section className="brand-strip"><p>Trusted by growing brands</p><div className="brands">{clientLogos.map(logo=><div key={logo.id} className="brand-item" title={logo.name}><img src={logo.src} alt={logo.name} className="brand-logo-img" loading="lazy" decoding="async"/></div>)}</div><div className="scribble">Good brands<br/>grow here <span>⤴</span></div></section>}
 function SiteHeader({page,go}){const [open,setOpen]=useState(false);useEffect(()=>setOpen(false),[page]);const nav=[['home','Home'],['services','Services'],['carousels','Carousels'],['reels','Reels'],['pricing','Pricing'],['contact','Contact']];return <header className="site-header"><button className="logo-button" onClick={()=>go('home')} aria-label="Srshti Creative Studio home"><Logo/></button><nav className={open?'nav open':'nav'} aria-label="Primary navigation">{nav.map(([id,label])=><button key={id} className={`${page===id || (page==='carousel-detail'&&id==='carousels') || (page==='reel-detail'&&id==='reels')?'active':''}`} onClick={()=>go(id)}>{label}</button>)}</nav><Button onClick={()=>go('contact')} className="header-cta">Let’s talk</Button><button className="hamburger" aria-label={open?'Close menu':'Open menu'} aria-expanded={open} onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button></header>}
-function PortfolioImage({name,alt='',className=''}){const fallback=name.startsWith('portfolio/smilecraft-')?'dental_01':name.startsWith('portfolio/milano-')?'travel_01':name.startsWith('portfolio/orbi-')?'architecture_01':name.startsWith('portfolio/chayam-')?'tattoo_01':null;return <img src={img(name)} alt={alt} className={className} loading="lazy" decoding="async" width="864" height="1080" onError={fallback?e=>{e.currentTarget.onerror=null;e.currentTarget.src=img(fallback)}:undefined}/> }
-function HeroDeck({go}){const names=['hero_01','hero_02','hero_03','hero_04'];return <div className="hero-deck" aria-label="Portfolio sample cards">{names.map((n,i)=><button key={n} onClick={()=>go('carousels')} className={`hero-deck-card deck-${i}`} aria-label={`View hero example ${i+1}`}><PortfolioImage name={n}/></button>)}<span className="sparkle s1">✳</span><span className="sparkle s2">✳</span></div>}
+function PortfolioImage({name,alt='',className='',priority=false}){const fallback=name.startsWith('portfolio/smilecraft-')?'dental_01':name.startsWith('portfolio/milano-')?'travel_01':name.startsWith('portfolio/orbi-')?'architecture_01':name.startsWith('portfolio/chayam-')?'tattoo_01':null;return <img src={img(name)} alt={alt} className={className} loading={priority?'eager':'lazy'} decoding="async" fetchPriority={priority?'high':'auto'} width="864" height="1080" onError={fallback?e=>{e.currentTarget.onerror=null;e.currentTarget.src=img(fallback)}:undefined}/> }
+function HeroParticles({containerRef}){
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
+
+    let animId;
+    let isVisible = true;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000, active: false };
+    let width = 0;
+    let height = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const PARTICLE_COUNT = 30;
+    const colors = [
+      '250, 200, 73',  // Gold
+      '245, 164, 22',  // Amber
+      '255, 238, 180', // Light warm
+      '255, 255, 255'  // Sparkle white
+    ];
+
+    const particles = [];
+
+    function resize() {
+      const container = containerRef?.current || canvas.parentElement;
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    resize();
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * (width || 800),
+        y: Math.random() * (height || 600),
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: -0.15 - Math.random() * 0.25,
+        radius: 1.1 + Math.random() * 1.5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        baseAlpha: 0.2 + Math.random() * 0.5,
+        pulseSpeed: 0.012 + Math.random() * 0.02,
+        pulseOffset: Math.random() * Math.PI * 2,
+        hasGlow: Math.random() > 0.5
+      });
+    }
+
+    function render(time) {
+      if (!isVisible) return;
+
+      if (mouse.active) {
+        mouse.x += (mouse.targetX - mouse.x) * 0.12;
+        mouse.y += (mouse.targetY - mouse.y) * 0.12;
+      }
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Subtle ambient golden aura around cursor
+      if (mouse.active && mouse.x > 0 && mouse.y > 0) {
+        const glowGrad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 140);
+        glowGrad.addColorStop(0, 'rgba(250, 200, 73, 0.08)');
+        glowGrad.addColorStop(0.5, 'rgba(245, 164, 22, 0.03)');
+        glowGrad.addColorStop(1, 'rgba(250, 200, 73, 0)');
+        ctx.fillStyle = glowGrad;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        if (!prefersReduced) {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.x += Math.sin(time * 0.001 + p.pulseOffset) * 0.12;
+
+          if (mouse.active) {
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const dist = Math.hypot(dx, dy);
+            const maxDist = 110;
+            if (dist < maxDist && dist > 0) {
+              const force = (1 - dist / maxDist) * 1.5;
+              const angle = Math.atan2(dy, dx);
+              p.x += Math.cos(angle) * force * 2.0;
+              p.y += Math.sin(angle) * force * 2.0;
+            }
+          }
+
+          if (p.x < -10) p.x = width + 10;
+          if (p.x > width + 10) p.x = -10;
+          if (p.y < -10) p.y = height + 10;
+          if (p.y > height + 10) p.y = -10;
+        }
+
+        const alpha = Math.max(0.08, Math.min(0.95, p.baseAlpha * (0.7 + 0.3 * Math.sin(time * p.pulseSpeed + p.pulseOffset))));
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.color}, ${alpha})`;
+
+        if (p.hasGlow) {
+          ctx.shadowColor = `rgba(${p.color}, ${alpha * 0.75})`;
+          ctx.shadowBlur = 6;
+        } else {
+          ctx.shadowBlur = 0;
+        }
+        ctx.fill();
+      }
+      ctx.shadowBlur = 0;
+
+      if (!prefersReduced) {
+        animId = requestAnimationFrame(render);
+      }
+    }
+
+    const containerEl = containerRef?.current || canvas.parentElement;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      const visible = entry.isIntersecting;
+      if (visible !== isVisible) {
+        isVisible = visible;
+        if (isVisible && !prefersReduced) {
+          animId = requestAnimationFrame(render);
+        } else {
+          cancelAnimationFrame(animId);
+        }
+      }
+    }, { threshold: 0.05 });
+
+    if (containerEl) observer.observe(containerEl);
+
+    const resizeObserver = new ResizeObserver(() => {
+      resize();
+      if (prefersReduced) render(0);
+    });
+    if (containerEl) resizeObserver.observe(containerEl);
+
+    function onPointerMove(e) {
+      if (!containerEl) return;
+      const rect = containerEl.getBoundingClientRect();
+      mouse.targetX = e.clientX - rect.left;
+      mouse.targetY = e.clientY - rect.top;
+      mouse.active = true;
+    }
+
+    function onPointerLeave() {
+      mouse.active = false;
+      mouse.targetX = -1000;
+      mouse.targetY = -1000;
+    }
+
+    containerEl?.addEventListener('pointermove', onPointerMove, { passive: true });
+    containerEl?.addEventListener('pointerleave', onPointerLeave, { passive: true });
+
+    function onVisChange() {
+      if (document.hidden) {
+        isVisible = false;
+        cancelAnimationFrame(animId);
+      } else {
+        isVisible = true;
+        if (!prefersReduced) animId = requestAnimationFrame(render);
+      }
+    }
+    document.addEventListener('visibilitychange', onVisChange);
+
+    animId = requestAnimationFrame(render);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      observer.disconnect();
+      resizeObserver.disconnect();
+      document.removeEventListener('visibilitychange', onVisChange);
+      containerEl?.removeEventListener('pointermove', onPointerMove);
+      containerEl?.removeEventListener('pointerleave', onPointerLeave);
+    };
+  }, [containerRef]);
+
+  return <canvas ref={canvasRef} className="hero-particles-canvas" aria-hidden="true" />;
+}
+
+function HeroDeck({go}){
+  const names=[
+    {name:'hero_01',alt:'Smilecraft Dental Clinic carousel design'},
+    {name:'hero_02',alt:'Milano Trips travel campaign design'},
+    {name:'hero_03',alt:'Chaayam Tattoo studio portfolio design'},
+    {name:'hero_04',alt:'Orbis Structurals architecture planning design'}
+  ];
+  return <div className="hero-deck" aria-label="Portfolio sample cards">{names.map(({name,alt},i)=><button key={name} onClick={()=>go('carousels')} className={`hero-deck-card deck-${i}`} aria-label={`View ${alt}`}><PortfolioImage name={name} alt={alt} priority={true}/></button>)}<span className="sparkle s1" aria-hidden="true">✳</span><span className="sparkle s2" aria-hidden="true">✳</span></div>;
+}
 function StatBar({compact=false}){return <div className={`stat-bar ${compact?'compact':''}`}>{heroStats.map(({icon:Icon,number,label})=><div className="stat" key={number}><Icon aria-hidden="true" size={30}/><div><strong>{number}</strong><span>{label}</span></div></div>)}</div>}
 function SectionHeading({eyebrow,children,description,action}){return <div className="section-heading"><div>{eyebrow&&<p className="eyebrow">{eyebrow}</p>}<h2>{children}</h2>{description&&<p className="muted">{description}</p>}</div>{action}</div>}
 function ProjectCard({project,go,kind='carousel'}){return <button className="project-card" onClick={()=>go(kind==='carousel'?'carousel-detail':'reel-detail',project.id)}><span className="project-image"><PortfolioImage name={project.cover} alt={`${project.title} example`}/>{kind==='reel'&&<span className="round-play"><Play size={20} fill="currentColor"/></span>}<span className="corner-arrow"><ArrowUpRight size={18}/></span></span><span className="project-meta"><small>{project.category} · {project.client}</small><strong>{project.title}</strong>{kind==='carousel'&&<span className="project-kind">{project.origin==='client'?'Original client artwork':'Creative concept'} · {project.slides.length} slides</span>}</span></button>}
 function ProjectPreview({go}){return <section className="light-section preview-section"><SectionHeading eyebrow="OUR WORK" action={<button className="text-link" onClick={()=>go('carousels')}>Explore portfolio <ArrowUpRight size={17}/></button>}>Real brands. <em>Real stories.</em></SectionHeading><div className="preview-grid">{[carousels[0],carousels[3],carousels[4],carousels[5]].map(item=><ProjectCard key={item.id} project={item} go={go}/>)}</div><div className="button-row"><Button onClick={()=>go('carousels')}>View carousels</Button><Button onClick={()=>go('reels')} secondary>Explore reels</Button></div></section>}
-function Home({go}){return <><section className="home-hero dark-section"><div className="home-copy"><p className="eyebrow">STRATEGY · CONTENT · MANAGEMENT · GROWTH</p><h1>Social<br/><mark>Media</mark> that<br/><strong>works.</strong></h1><p className="intro">From daily branded content to video, ads and automation, we give growing businesses a consistent digital presence.</p><div className="button-row"><Button onClick={()=>go('pricing')}>View packages</Button><Button onClick={()=>go('carousels')} secondary><Play size={14} fill="currentColor"/> See our work</Button></div></div><HeroDeck go={go}/></section><StatBar/><BrandStrip/><ProjectPreview go={go}/><section className="two-column-section"><div><p className="eyebrow">WHAT WE DO</p><h2>Everything you need<br/>to <em>grow online.</em></h2><p>Choose from focused social media handling or a complete growth package with videos, website support, advertising and automation.</p><Button onClick={()=>go('services')}>Explore services</Button></div><div className="mini-service-grid">{[['Branded daily content',BookOpen],['Facebook & Instagram',Users],['Creative videos',Clapperboard],['Ads & automation',Target]].map(([t,Icon])=><button onClick={()=>go('services')} key={t}><Icon size={27}/><span>{t}</span><ArrowUpRight size={16}/></button>)}</div></section><Cta go={go}/></>}
+function Home({go}){
+  const heroRef = useRef(null);
+  return <><section ref={heroRef} className="home-hero dark-section"><HeroParticles containerRef={heroRef}/><div className="home-copy"><p className="eyebrow">STRATEGY · CONTENT · MANAGEMENT · GROWTH</p><h1>Social<br/><mark>Media</mark> that<br/><strong>works.</strong></h1><p className="intro">From daily branded content to video, ads and automation, we give growing businesses a consistent digital presence.</p><div className="button-row"><Button onClick={()=>go('pricing')}>View packages</Button><Button onClick={()=>go('carousels')} secondary><Play size={14} fill="currentColor"/> See our work</Button></div></div><HeroDeck go={go}/></section><StatBar/><BrandStrip/><ProjectPreview go={go}/><section className="two-column-section"><div><p className="eyebrow">WHAT WE DO</p><h2>Everything you need<br/>to <em>grow online.</em></h2><p>Choose from focused social media handling or a complete growth package with videos, website support, advertising and automation.</p><Button onClick={()=>go('services')}>Explore services</Button></div><div className="mini-service-grid">{[['Branded daily content',BookOpen],['Facebook & Instagram',Users],['Creative videos',Clapperboard],['Ads & automation',Target]].map(([t,Icon])=><button onClick={()=>go('services')} key={t}><Icon size={27}/><span>{t}</span><ArrowUpRight size={16}/></button>)}</div></section><Cta go={go}/></>;
+}
 const serviceList=[['Branded posts & carousels','Thirty brand-led creatives each month, planned for a consistent daily posting schedule.',BookOpen],['Facebook & Instagram handling','Day-to-day management that keeps both channels active, aligned and on-brand.',Users],['Creative video content','Short-form videos created regularly—from weekly content to higher-volume monthly plans.',Clapperboard],['Stories & engagement','Daily stories that keep your audience connected and encourage ongoing interaction.',MessageCircle],['Website & local presence','Website creation and maintenance, with Google Business Profile support included in Pro.',MousePointer2],['Ads & automation','Tailored strategy, Meta ads optimization and WhatsApp automation in the Ultimate package.',Target]];
 function ServicesHero({go}){const heroRef=useRef(null);const [hoveredCard,setHoveredCard]=useState(null);function handleMouseMove(e){if(!heroRef.current)return;const rect=heroRef.current.getBoundingClientRect();const x=e.clientX-rect.left;const y=e.clientY-rect.top;const pctX=((x/rect.width)*100).toFixed(1);const pctY=((y/rect.height)*100).toFixed(1);const tiltX=(((x/rect.width)-0.5)*9).toFixed(2);const tiltY=(((y/rect.height)-0.5)*-9).toFixed(2);heroRef.current.style.setProperty('--mouse-x',`${pctX}%`);heroRef.current.style.setProperty('--mouse-y',`${pctY}%`);heroRef.current.style.setProperty('--tilt-x',`${tiltX}deg`);heroRef.current.style.setProperty('--tilt-y',`${tiltY}deg`)}function handleMouseLeave(){if(!heroRef.current)return;heroRef.current.style.setProperty('--mouse-x','72%');heroRef.current.style.setProperty('--mouse-y','46%');heroRef.current.style.setProperty('--tilt-x','0deg');heroRef.current.style.setProperty('--tilt-y','0deg')}return <section ref={heroRef} className="page-hero dark-section services-hero" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}><div className="services-hero-glow" aria-hidden="true"/><div className="services-hero-copy"><p className="eyebrow hero-anim-1">CONTENT · MANAGEMENT · VIDEO · GROWTH</p><h1 className="hero-anim-2">Everything<br/><mark>your brand</mark><br/>needs to <strong>grow.</strong></h1><p className="intro hero-anim-3">Start with consistent social media management, then scale into video, website support, paid ads and automation as your business grows.</p><div className="button-row hero-anim-4"><Button onClick={()=>go('pricing')}>View packages</Button><Button onClick={()=>go('carousels')} secondary>View work</Button></div></div><div className={`services-art hero-anim-art ${hoveredCard?`has-hovered hovered-${hoveredCard}`:''}`}><div className="services-card-wrap card-left" onMouseEnter={()=>setHoveredCard('left')} onMouseLeave={()=>setHoveredCard(null)} onClick={()=>go('carousels')} role="button" tabIndex={0} aria-label="Milano Trips travel social media campaign"><PortfolioImage name="9" alt="Milano Trips travel campaign design"/><span className="card-badge">Milano Trips · Travel</span></div><div className="services-card-wrap card-right" onMouseEnter={()=>setHoveredCard('right')} onMouseLeave={()=>setHoveredCard(null)} onClick={()=>go('carousels')} role="button" tabIndex={0} aria-label="Madecaan food seasoning packaging design"><PortfolioImage name="10" alt="Madecaan Chicken Seasoning food packaging design"/><span className="card-badge">Madecaan · Packaging</span></div></div></section>}
 function Services({go}){return <><ServicesHero go={go}/><section className="light-section"><SectionHeading eyebrow="OUR SERVICES" description="Each package builds on the one before it, so you can choose the level of support your business needs.">One team for your digital presence.</SectionHeading><div className="service-grid">{serviceList.map(([name,body,Icon])=><article className="service-card" key={name}><Icon size={31}/><h3>{name}</h3><p>{body}</p></article>)}</div></section><section className="process-section"><SectionHeading eyebrow="OUR PROCESS">A clear path from plan to growth.</SectionHeading><div className="process-grid">{[['01','Understand','We learn about your business, audience and goals.'],['02','Plan','We build a brand-led monthly content direction.'],['03','Create & manage','We design, publish and manage the agreed content.'],['04','Optimize','We improve your presence, campaigns and growth systems.']].map(([n,t,b])=><div key={n}><span>{n}</span><h3>{t}</h3><p>{b}</p></div>)}</div></section><Cta go={go}/></>}
