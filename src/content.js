@@ -1,9 +1,19 @@
 /** Portfolio sources: Smilecraft artwork supplied by studio; Milano/Orbi concepts are demo creative directions. */
+export const clientLogos = [
+  { id: 'smilecraft', name: "Dr. Pooja's Smile Craft Dental Clinic", src: '/Client_Logos/1.png' },
+  { id: 'milano', name: "MILANO TRIPS LLP", src: '/Client_Logos/2.png' },
+  { id: 'chaayam', name: "CHAAYAM TATTOO", src: '/Client_Logos/3.png' },
+  { id: 'orbis', name: "orbis structurals LLP", src: '/Client_Logos/4.png' },
+  { id: 'madecaan', name: "MADECAAN FOOD INGREDIENTS PVT LTD", src: '/Client_Logos/5.png' },
+  { id: 'miraaz', name: "Miraaz Events and Entertainments", src: '/Client_Logos/6.png' },
+  { id: 'zoyara', name: "ZOYARA FORTUNE ENTERPRISES", src: '/Client_Logos/7.png' },
+];
+
 export const studio = {
   name: 'Srshti Creative Studio',
   email: 'hello@example.com', // Replace before publishing.
   serviceLocation: 'Available for projects worldwide',
-  clients: ['Smilecraft', 'Chayam', 'MILANO', 'Orbi'],
+  clients: ["Smile Craft", "Milano Trips", "Chaayam Tattoo", "Orbis Structurals", "Madecaan", "Miraaz", "Zoyara"],
 };
 const slides = (slug) => Array.from({length:5}, (_,i)=>`portfolio/${slug}-${String(i+1).padStart(2,'0')}`);
 export const carousels = [
