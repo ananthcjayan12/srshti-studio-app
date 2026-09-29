@@ -5,7 +5,7 @@
 @media (max-width:390px){.logo-main{font-size:1.93rem}.home-copy h1{font-size:3.62rem}.page-hero h1,.gallery-hero h1{font-size:3.05rem}.hero-deck{height:270px;margin:28px auto 0;width:100%}.hero-deck-card{width:130px;aspect-ratio:9/16;height:auto;top:5%;border-radius:12px}.deck-0{left:2%}.deck-1{left:21%}.deck-2{left:40%}.deck-3{left:58%}.portfolio-grid .project-meta small{font-size:.55rem}.pricing-grid{grid-template-columns:1fr}.price-card{min-height:auto;padding:24px}.price-card ul{margin-bottom:20px}.price-card h2{font-size:1.9rem}.price-amount{font-size:2.3rem}.price-card li{font-size:.82rem}.story-steps{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
-.logo-image{width:145px;height:auto;display:block;object-fit:contain}.site-footer .logo-image{width:125px}@media(max-width:760px){.logo-image{width:112px}.site-footer .logo-image{width:112px}}
+.logo-image{width:140px;max-height:62px;height:auto;display:block;object-fit:contain}.site-footer .logo-image{width:122px;max-height:54px}@media(max-width:760px){.logo-image{width:104px;max-height:46px}.site-footer .logo-image{width:104px;max-height:46px}}
 
 /* Five-slide portfolio: native 4:5 artwork and accessible touch targets. */
 .project-kind{display:block;font-size:.69rem;font-weight:650;letter-spacing:.015em;color:#87663a;margin-top:7px}

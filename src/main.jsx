@@ -12,7 +12,7 @@ import './style.css';
 const img=(name)=>name.startsWith('/')?name:name.startsWith('hero_')?`/${name}.webp`:name.endsWith('.png')||name.endsWith('.webp')?`/images/${name}`:`/images/${name}.webp`;
 
 const pathFromHash=()=>{const s=window.location.hash.replace(/^#\/?/,''); return s || 'home'};
-function Logo({inverse=true}){return <img className="logo-image" src={`/images/logo-${inverse?'dark':'light'}.png`} alt={studio.name}/>}
+function Logo({inverse=true}){return <img className="logo-image" src={`/images/logo-${inverse?'dark':'light'}.png`} alt={studio.name} width="474" height="274" decoding="async"/>}
 
 function Button({children,onClick,secondary=false,className='',icon=true,type='button'}){return <button type={type} onClick={onClick} className={`btn ${secondary?'btn-outline':''} ${className}`}>{children}{icon&&<ArrowUpRight size={16} strokeWidth={2.2}/>}</button>}
 const heroStats=[{icon:BookOpen,number:'6',label:'Featured carousels'},{icon:Play,number:'25',label:'Portfolio slides'},{icon:ChartNoAxesColumnIncreasing,number:'4',label:'Creative industries'},{icon:Heart,number:'WebP',label:'Optimized artwork'}];
